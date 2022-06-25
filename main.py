@@ -1,11 +1,17 @@
+import os
+from dotenv import load_dotenv
 import json
 import sqlalchemy
 from sqlalchemy.orm import sessionmaker
 from models import create_tables, Publisher, Shop, Book, Stock, Sale
 
-login = "postgres"
-password = ""
-db_name = "orm"
+load_dotenv()
+
+login = os.getenv("LOGIN")
+password = os.getenv("PASSWORD")
+db_name = os.getenv("DB_NAME")
+
+
 DSN = f"postgresql://{login}:{password}@localhost:5432/{db_name}"
 
 engine = sqlalchemy.create_engine(DSN)
